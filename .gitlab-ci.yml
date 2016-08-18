@@ -4,9 +4,13 @@ image: docker:latest
 
 build:
   stage: build
+  services:
+    - docker:1.12-dind
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
   script:
     - docker build -t $CI_REGISTRY_IMAGE:latest .
     - docker tag $CI_REGISTRY_IMAGE:latest $CI_REGISTRY_IMAGE:$CI_BUILD_REF
     - docker push $CI_REGISTRY_IMAGE
+  only:
+    - master
