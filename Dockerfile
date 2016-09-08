@@ -8,4 +8,4 @@ RUN \
   apk del build-base ruby-dev curl && \
   rm -rf /tmp/* /var/tmp/* /var/cache/apk/*
 
-CMD ["fluentd", "-c", "/etc/fluentd/fluent.conf", "--use-v1-config"]
+CMD ["fluentd", "-c", "/etc/fluentd/fluent.conf", "--use-v1-config", "--suppress-repeated-stacktrace"]
