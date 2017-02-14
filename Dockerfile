@@ -27,8 +27,6 @@ RUN apt-get -qq update && \
       /opt/td-agent/embedded/share/postgresql \
       /etc/td-agent/td-agent.conf
 
-COPY fluent.conf /etc/td-agent/td-agent.conf
-
 # Copy the Fluentd configuration file for logging Docker container logs.
 COPY fluent.conf /etc/td-agent/td-agent.conf
 
