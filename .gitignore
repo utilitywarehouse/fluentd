@@ -1,0 +1,5 @@
+testdata/*.log.pos
+testdata/fluentd-buffers
+testdata/journal
+.idea
+*.iml
