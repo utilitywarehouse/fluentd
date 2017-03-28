@@ -1,0 +1,54 @@
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"10.2.22.19 - - [21/Mar/2017:07:16:41 +0000] \"POST /trigger-jobs HTTP/1.1\" 200 20 \"-\" \"curl/7.52.1\" 2\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"ERROR [2017-03-21 07:16:42,627] u.s.d.Jobs {} uw.smartmetering.domain.Jobs: Job uw.smartmetering.tma.PollStatusFeedJob@7091121b failed\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"javax.ws.rs.ProcessingException: org.apache.http.conn.ConnectTimeoutException: Connect to ssp-api-stg01.tmadata.co.uk:443 [ssp-api-stg01.tmadata.co.uk/80.195.118.185, ssp-api-stg01.tmadata.co.uk/217.138.85.11] failed: connect timed out\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at io.dropwizard.client.DropwizardApacheConnector.apply(DropwizardApacheConnector.java:109)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.glassfish.jersey.client.ClientRuntime.invoke(ClientRuntime.java:252)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.glassfish.jersey.client.JerseyInvocation$1.call(JerseyInvocation.java:684)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.glassfish.jersey.client.JerseyInvocation$1.call(JerseyInvocation.java:681)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.glassfish.jersey.internal.Errors.process(Errors.java:315)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.glassfish.jersey.internal.Errors.process(Errors.java:297)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.glassfish.jersey.internal.Errors.process(Errors.java:228)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:444)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.glassfish.jersey.client.JerseyInvocation.invoke(JerseyInvocation.java:681)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.glassfish.jersey.client.JerseyInvocation$Builder.method(JerseyInvocation.java:411)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.tmaclient.TmaClient$_makeRequestNoValidation_closure7.doCall(TmaClient.groovy:144)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.circuitbreaker.Circuit.withBreaker(Circuit.groovy:33)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.tmaclient.TmaClient.makeRequestNoValidation(TmaClient.groovy:134)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.tmaclient.TmaClient$_makeRequest_closure6.doCall(TmaClient.groovy:112)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.circuitbreaker.Circuit.withBreaker(Circuit.groovy:33)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.tmaclient.TmaClient.makeRequest(TmaClient.groovy:110)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.tmaclient.TmaClient.doGet(TmaClient.groovy:107)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.tmaclient.TmaClient.get(TmaClient.groovy:86)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.tmaclient.TmaStatusClient.getSince(TmaStatusClient.groovy:31)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.smartmetering.tma.StatusFeedConsumer.doForEachNewStatus(StatusFeedConsumer.groovy:34)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.smartmetering.tma.StatusFeedConsumer.forEachNewStatus(StatusFeedConsumer.groovy:24)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.smartmetering.tma.PollStatusFeedJob.run(PollStatusFeedJob.groovy:44)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.smartmetering.domain.Jobs$_run_closure1$_closure2.doCall(Jobs.groovy:49)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.smartmetering.domain.Jobs$_run_closure1.doCall(Jobs.groovy:47)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.smartmetering.db.DbLock.ifOwned(DbLock.groovy:40)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.smartmetering.domain.Jobs.run(Jobs.groovy:43)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at uw.smartmetering.http.TriggerJobsResource.triggerJobs(TriggerJobsResource.groovy:27)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"Caused by: org.apache.http.conn.ConnectTimeoutException: Connect to ssp-api-stg01.tmadata.co.uk:443 [ssp-api-stg01.tmadata.co.uk/80.195.118.185, ssp-api-stg01.tmadata.co.uk/217.138.85.11] failed: connect timed out\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:150)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:353)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:380)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:184)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:88)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:184)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:107)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at io.dropwizard.client.DropwizardApacheConnector.apply(DropwizardApacheConnector.java:87)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	... 26 common frames omitted\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"Caused by: java.net.SocketTimeoutException: connect timed out\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:207)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at java.net.Socket.connect(Socket.java:589)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:337)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:141)\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"	... 36 common frames omitted\n"}
+{"time":"2017-01-08T11:22:33.444Z", "stream": "stderr", "log":"10.2.36.53 - - [21/Mar/2017:07:16:42 +0000] \"GET /admin/prometheusMetrics HTTP/1.1\" 200 56718 \"-\" \"Go-http-client/1.1\" 7\n"}
+

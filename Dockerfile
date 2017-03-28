@@ -12,7 +12,7 @@ RUN apt-get -qq update && \
   sed -i -e "s/USER=td-agent/USER=root/" -e "s/GROUP=td-agent/GROUP=root/" /etc/init.d/td-agent && \
   td-agent-gem install --no-document fluent-plugin-sumologic_output -v 0.0.3 && \
   td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 0.26.2 && \
-  td-agent-gem install --no-document fluent-plugin-detect-exceptions -v 0.0.4 && \
+  td-agent-gem install --no-document fluent-plugin-detect-exceptions-with-error -v 0.0.3 && \
   td-agent-gem install --no-document fluent-plugin-systemd -v 0.0.5 && \
   # Remove build tools
   apt-get remove -y -qq gcc make build-essential g++ && \
