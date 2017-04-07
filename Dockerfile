@@ -1,4 +1,4 @@
-FROM gcr.io/google_containers/ubuntu-slim:0.6
+FROM gcr.io/google_containers/ubuntu-slim:0.8
 
 # Disable prompts from apt
 ENV DEBIAN_FRONTEND noninteractive
