@@ -1,4 +1,4 @@
-FROM gcr.io/google_containers/ubuntu-slim:0.8
+FROM gcr.io/google_containers/ubuntu-slim:0.14
 
 # Disable prompts from apt
 ENV DEBIAN_FRONTEND noninteractive
@@ -10,10 +10,10 @@ RUN apt-get -qq update && \
   # Install logging agent and required gems
   /usr/bin/curl -sSL https://toolbelt.treasuredata.com/sh/install-ubuntu-xenial-td-agent2.sh | sh && \
   sed -i -e "s/USER=td-agent/USER=root/" -e "s/GROUP=td-agent/GROUP=root/" /etc/init.d/td-agent && \
-  td-agent-gem install --no-document fluent-plugin-sumologic_output -v 0.0.3 && \
-  td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 0.26.2 && \
-  td-agent-gem install --no-document fluent-plugin-detect-exceptions -v 0.0.4 && \
-  td-agent-gem install --no-document fluent-plugin-systemd -v 0.0.5 && \
+  td-agent-gem install --no-document fluent-plugin-sumologic_output -v 0.0.6 && \
+  td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 0.29.0 && \
+  td-agent-gem install --no-document fluent-plugin-detect-exceptions -v 0.0.5 && \
+  td-agent-gem install --no-document fluent-plugin-systemd -v 0.0.8 && \
   # Remove build tools
   apt-get remove -y -qq gcc make build-essential g++ && \
   apt-get autoremove -y -qq && \
