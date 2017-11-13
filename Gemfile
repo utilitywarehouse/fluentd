@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'fluentd', '~>0.14.22'
+gem 'fluentd', '~>0.12.35'
 gem 'fluent-plugin-record-reformer', '~>0.8.3'
-gem 'fluent-plugin-sumologic_output', '~>1.0.0'
+gem 'fluent-plugin-sumologic_output', '~>0.0.6'
 gem 'fluent-plugin-systemd', '~>0.0.8'
 gem 'fluent-plugin-kubernetes_metadata_filter', '~>0.32.0'
 gem 'fluent-plugin-detect-exceptions', '~>0.0.5'

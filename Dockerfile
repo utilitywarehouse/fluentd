@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM gcr.io/google-containers/debian-base-amd64:0.3
+FROM gcr.io/google-containers/debian-base-amd64:0.2
 
 COPY Gemfile /Gemfile
 
