@@ -2,11 +2,11 @@
 # it can lead to an infinite loop, when error in sending one message generates
 # another message which also fails to be sent and so on.
 <match fluent.**>
-  type null
+  @type null
 </match>
 
 <source>
-  type tail
+  @type tail
   format json 
   time_key time
   path /tmp/in
@@ -18,7 +18,7 @@
 
 # Detect exceptions in the log output and forward them as one log entry.
 <match raw.**>
-  type detect_exceptions
+  @type detect_exceptions
   remove_tag_prefix raw
   message log
   stream stream
@@ -27,5 +27,5 @@
 </match>
 
 <match **>
-  type stdout
+  @type stdout
 </match>

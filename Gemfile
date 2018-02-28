@@ -1,12 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'fluentd', '~>0.12.35'
-gem 'fluent-plugin-record-reformer', '~>0.8.3'
-gem 'fluent-plugin-sumologic_output', '~>0.0.6'
-gem 'fluent-plugin-systemd', '~>0.0.8'
-gem 'fluent-plugin-kubernetes_metadata_filter', '~>0.32.0'
-gem 'fluent-plugin-detect-exceptions', '~>0.0.5'
-gem 'fluent-plugin-prometheus', '~>0.2.1'
-gem 'fluent-plugin-s3', '~>0.8.5'
-gem 'activesupport', '~>4.2.9' # this needs to be fixed to 4.x.x since 5.x.x requires ruby 2.2 or latest
-gem 'oj', '~>2.18.1'
+# upstream
+gem 'fluentd', '<=1.1.0'
+gem 'activesupport', '~>5.1.4'
+gem 'fluent-plugin-kubernetes_metadata_filter', '~>1.0.0'
+gem 'fluent-plugin-systemd', '~>0.3.1'
+gem 'fluent-plugin-detect-exceptions', '~>0.0.9'
+gem 'fluent-plugin-prometheus', '~>0.3.0'
+gem 'fluent-plugin-multi-format-parser', '~>1.0.0'
+gem 'oj', '~>3.3.1.0'
+
+# uw
+gem 'fluent-plugin-record-reformer', '~>0.9.1'
+gem 'fluent-plugin-sumologic_output', '~>1.0.1'
+gem 'fluent-plugin-s3', '~>1.1.1'

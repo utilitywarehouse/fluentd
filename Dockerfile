@@ -1,4 +1,6 @@
-# Copyright 2017 Google Inc.
+# https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch
+#
+# Copyright 2017 The Kubernetes Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,30 +14,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM gcr.io/google-containers/debian-base-amd64:0.2
+# This Dockerfile will build an image that is configured
+# to run Fluentd with an Elasticsearch plug-in and the
+# provided configuration file.
+# The image acts as an executable for the binary /usr/sbin/td-agent.
+# Note that fluentd is run with root permssion to allow access to
+# log files with root only access under /var/log/containers/*
 
+FROM debian:stretch-slim
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+COPY clean-apt /usr/bin
+COPY clean-install /usr/bin
 COPY Gemfile /Gemfile
 
 # 1. Install & configure dependencies.
 # 2. Install fluentd via ruby.
 # 3. Remove build dependencies.
 # 4. Cleanup leftover caches & files.
-RUN BUILD_DEPS="make gcc g++ libc6-dev ruby-dev" \
+RUN BUILD_DEPS="make gcc g++ libc6-dev ruby-dev libffi-dev" \
     && clean-install $BUILD_DEPS \
                      ca-certificates \
                      libjemalloc1 \
-                     liblz4-1 \
                      ruby \
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem install --file Gemfile \
     && apt-get purge -y --auto-remove \
                      -o APT::AutoRemove::RecommendsImportant=false \
                      $BUILD_DEPS \
-    && rm -rf /tmp/* \
-              /var/lib/apt/lists/* \
-              /usr/lib/ruby/gems/*/cache/*.gem \
-              /var/log/* \
-              /var/tmp/*
+    && clean-apt \
+    # Ensure fluent has enough file descriptors
+    && ulimit -n 65536
 
 # Copy the Fluentd configuration file for logging Docker container logs.
 COPY fluent.conf /etc/fluent/fluent.conf
