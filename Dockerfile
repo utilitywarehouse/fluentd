@@ -48,7 +48,6 @@ RUN BUILD_DEPS="make gcc g++ libc6-dev ruby-dev libffi-dev" \
     && ulimit -n 65536
 
 # Copy the Fluentd configuration file for logging Docker container logs.
-COPY fluent.conf /etc/fluent/fluent.conf
 COPY run.sh /run.sh
 
 # Expose prometheus metrics.
