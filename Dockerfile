@@ -38,8 +38,10 @@ RUN BUILD_DEPS="make gcc g++ libc6-dev ruby-dev libffi-dev" \
                      ca-certificates \
                      libjemalloc1 \
                      ruby \
-    && echo 'gem: --no-document' >> /etc/gemrc \
-    && gem install --file Gemfile \
+                     git \
+    && gem install bundler \
+    && bundle install \
+    && gem uninstall bundler \
     && apt-get purge -y --auto-remove \
                      -o APT::AutoRemove::RecommendsImportant=false \
                      $BUILD_DEPS \
