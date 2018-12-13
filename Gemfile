@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # upstream
 gem 'fluentd', '~>1.3.1'
 gem 'activesupport', '~>5.2.2'
-gem 'fluent-plugin-detect-exceptions', '~>0.0.11'
 gem 'fluent-plugin-prometheus', '~>1.2.1'
 gem 'fluent-plugin-multi-format-parser', '~>1.0.0'
 gem 'oj', '~>3.7.4'
