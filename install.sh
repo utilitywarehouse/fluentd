@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Copyright 2017 The Kubernetes Authors.
 #
@@ -20,10 +20,28 @@
 
 set -o errexit
 
+# 1. Install & configure dependencies.
+# 2. Install fluentd via ruby.
+# 3. Remove build dependencies.
+# 4. Cleanup leftover caches & files.
+BUILD_DEPS="make gcc g++ libc6-dev ruby-dev libffi-dev"
+
+# apt install
+apt-get update
+echo "${BUILD_DEPS} ca-certificates libjemalloc2 ruby" | xargs apt-get install -y --no-install-recommends
+
+# ruby install
+echo 'gem: --no-document' >> /etc/gemrc 
+gem install --file Gemfile
+
+# cleanup
+echo "${BUILD_DEPS}" | xargs apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 apt-get clean -y
 rm -rf \
    /var/cache/debconf/* \
    /var/lib/apt/lists/* \
    /var/log/* \
-   /tmp/* \
    /var/tmp/*
+
+# Ensure fluent has enough file descriptors
+ulimit -n 65536
