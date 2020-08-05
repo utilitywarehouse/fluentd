@@ -18,26 +18,45 @@
 # The image acts as an executable for the binary /usr/sbin/td-agent.
 # Note that fluentd is run with root permssion to allow access to
 # log files with root only access under /var/log/containers/*
-
-FROM debian:buster-slim
+FROM ruby:2.7-slim-buster as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-COPY install.sh /tmp/install.sh
 COPY Gemfile /Gemfile
 
-RUN chmod +x /tmp/install.sh && \
-    /bin/bash -l -c /tmp/install.sh && \
-    rm /tmp/*
+SHELL ["/bin/bash", "-e", "-o", "pipefail", "-c"]
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends g++ gcc make && \
+    echo 'gem: --no-document' >> /etc/gemrc && \
+    gem install --file Gemfile
+
+FROM ruby:2.7-slim-buster
+
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Copy the Fluentd configuration file for logging Docker container logs.
 COPY fluent.conf /etc/fluent/fluent.conf
-COPY run.sh /run.sh
+COPY entrypoint.sh /entrypoint.sh
+COPY --from=builder /usr/local/bundle/ /usr/local/bundle
+
+SHELL ["/bin/bash", "-e", "-o", "pipefail", "-c"]
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libjemalloc2 && \
+    apt-get clean -y && \
+    ulimit -n 65536 && \
+    rm -rf \
+        /var/cache/debconf/* \
+        /var/lib/apt/lists/* \
+        /var/log/* \
+        /var/tmp/* \
+        rm -rf /tmp/*
 
 # Expose prometheus metrics.
-EXPOSE 8080
+EXPOSE 80
 
 ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
 
 # Start Fluentd to pick up our config that watches Docker container logs.
-CMD ["/run.sh"]
+CMD ["/entrypoint.sh"]
