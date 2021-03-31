@@ -18,6 +18,12 @@
 # The image acts as an executable for the binary /usr/sbin/td-agent.
 # Note that fluentd is run with root permssion to allow access to
 # log files with root only access under /var/log/containers/*
+
+# 1. Install & configure dependencies.
+# 2. Install fluentd via ruby.
+# 3. Remove build dependencies.
+# 4. Cleanup leftover caches & files.
+
 FROM ruby:2.7-slim-buster as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -26,8 +32,10 @@ COPY Gemfile /Gemfile
 
 SHELL ["/bin/bash", "-e", "-o", "pipefail", "-c"]
 
+# hadolint ignore=DL3008,DL3028
 RUN apt-get update && \
     apt-get install -y --no-install-recommends g++ gcc make && \
+    rm -rf /var/lib/apt/lists/* && \
     echo 'gem: --no-document' >> /etc/gemrc && \
     gem install --file Gemfile
 
@@ -38,10 +46,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Copy the Fluentd configuration file for logging Docker container logs.
 COPY fluent.conf /etc/fluent/fluent.conf
 COPY entrypoint.sh /entrypoint.sh
-COPY --from=builder /usr/local/bundle/ /usr/local/bundle
+COPY --from=builder /usr/local/bundle/ /usr/local/bundle 
 
 SHELL ["/bin/bash", "-e", "-o", "pipefail", "-c"]
 
+# hadolint ignore=DL3008
 RUN apt-get update && \
     apt-get install -y --no-install-recommends libjemalloc2 && \
     apt-get clean -y && \
@@ -55,8 +64,6 @@ RUN apt-get update && \
 
 # Expose prometheus metrics.
 EXPOSE 80
-
-ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
 
 # Start Fluentd to pick up our config that watches Docker container logs.
 CMD ["/entrypoint.sh"]
