@@ -25,7 +25,7 @@ steps:
         from_secret: docker_password
       repo: quay.io/utilitywarehouse/${DRONE_REPO_NAME}
       registry: quay.io
-      dockerfile: bullseye.dockerfile
+      dockerfile: Dockerfile.bullseye
 
 trigger:
   event:
