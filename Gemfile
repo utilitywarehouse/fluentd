@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 #
 # Commented out gems aren't needed by us
 gem 'activesupport', '6.1.1'
-gem 'fluentd', '1.13.0'
+gem 'fluentd', '1.12.4'
 gem 'fluent-plugin-concat', '2.4.0'
 gem 'fluent-plugin-detect-exceptions', '0.0.13'
 #gem 'fluent-plugin-elasticsearch', '4.3.3'
