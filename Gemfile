@@ -15,7 +15,7 @@ gem 'fluent-plugin-systemd', '1.0.5'
 gem 'oj', '3.11.0'
 
 # uw
-gem 'fluent-plugin-gcloud-pubsub-custom', '1.5.0'
+gem 'fluent-plugin-gcloud-pubsub-custom', '1.6.0'
 gem 'fluent-plugin-gelf-hs', '1.0.8'
 gem 'fluent-plugin-grafana-loki', '1.2.16'
 gem 'fluent-plugin-s3', '1.5.1'
