@@ -1,7 +1,5 @@
 # Fluentd
 
-[![Build Status](https://drone.prod.merit.uw.systems/api/badges/utilitywarehouse/fluentd/status.svg)](https://drone.prod.merit.uw.systems/utilitywarehouse/fluentd)
-
 This repository is used to build a fluentd image that's used to ship logs from
 kubernetes nodes.
 
