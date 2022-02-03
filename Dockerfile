@@ -24,7 +24,7 @@
 # 3. Remove build dependencies.
 # 4. Cleanup leftover caches & files.
 
-FROM ruby:2.7-slim-buster as builder
+FROM ruby:2.7-slim-bullseye as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -46,7 +46,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Copy the Fluentd configuration file for logging Docker container logs.
 COPY fluent.conf /etc/fluent/fluent.conf
 COPY entrypoint.sh /entrypoint.sh
-COPY --from=builder /usr/local/bundle/ /usr/local/bundle 
+COPY --from=builder /usr/local/bundle/ /usr/local/bundle
 
 SHELL ["/bin/bash", "-e", "-o", "pipefail", "-c"]
 
