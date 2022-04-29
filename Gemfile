@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # upstream
 #
 # Commented out gems aren't needed by us
-gem 'activesupport', '6.1.5.1' # https://rubygems.org/gems/activesupport/versions, https://github.com/rails/rails
+gem 'activesupport', '6.1.1' # https://rubygems.org/gems/activesupport/versions, https://github.com/rails/rails
 #gem 'elasticsearch-xpack', '7.10.1'
 gem 'fluentd', '1.14.6' # https://github.com/fluent/fluentd
 gem 'fluent-plugin-concat', '2.5.0' # https://rubygems.org/gems/fluent-plugin-concat, https://github.com/fluent-plugins-nursery/fluent-plugin-concat
