@@ -24,7 +24,7 @@
 # 3. Remove build dependencies.
 # 4. Cleanup leftover caches & files.
 
-FROM ruby:2.7-slim-bullseye as builder
+FROM ruby:2.7-slim-buster as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
