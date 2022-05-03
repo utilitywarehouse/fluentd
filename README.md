@@ -1,14 +1,12 @@
 # Fluentd
 
-This repository is used to build a fluentd image that's used to ship logs from
-kubernetes nodes.
+Modified fluentd image for UW usage
 
-It borrows heavily from
-https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image
+It builds upon https://github.com/fluent/fluentd-docker-image using plugin versions from https://github.com/fluent/fluentd-kubernetes-daemonset 's `debian-s3` images (like https://github.com/fluent/fluentd-kubernetes-daemonset/blob/master/docker-image/v1.14/debian-s3/Gemfile)
 
-# Bullseye version
+We use `debian-s3` since it's the closest to what we want, and we can rely on their plugin versions combination to work, while only adding a few plugins ourselves
 
-Current official fluentd images based on Buster pack an older version of
-libsystemd that can't read logs from `flatcar-2605-09-0` onwards.
-
-As a temporary workaround we are building our own fluentd images from Bullseye.
+# Updating the image
+* Update the `fluent/fluend` image tag in `Dockerfile`
+* Update UpstreamGemfile pulling from upstream
+* Update versions in UWGemfile, checking plugin's releases
