@@ -1,7 +1,7 @@
 # Modified version of https://github.com/fluent/fluentd-docker-image#debian-version
 # but using Gemfiles instead of specifying the plugins
 
-FROM fluent/fluentd:v1.15.2-debian-1.0
+FROM fluent/fluentd:v1.16.0-debian-1.0
 
 COPY entrypoint.sh /entrypoint.sh
 COPY UpstreamGemfile /UpstreamGemfile
