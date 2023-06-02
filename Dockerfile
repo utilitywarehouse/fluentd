@@ -30,6 +30,4 @@ COPY fluent.conf /etc/fluent/fluent.conf
 # Expose prometheus metrics
 EXPOSE 80
 
-ENV TINI_SUBREAPER=true
-
 ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
